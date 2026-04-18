@@ -123,6 +123,79 @@
     font-weight: 700;
   }
 
+  /* Mobile menu button — hidden on desktop */
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    color: var(--text);
+    transition: background-color 0.2s, color 0.2s;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-toggle:hover {
+    background-color: var(--border);
+    color: var(--primary-dark);
+  }
+
+  .menu-toggle:focus {
+    outline: 2px solid rgba(232, 135, 75, 0.4);
+    outline-offset: 2px;
+  }
+
+  .menu-toggle svg {
+    display: block;
+  }
+
+  /* Dropdown menu — hidden by default */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 64px;
+    right: 16px;
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    padding: 8px;
+    min-width: 200px;
+    z-index: 99;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .mobile-menu.open {
+    display: flex;
+  }
+
+  .mobile-menu .nav-link {
+    display: block;
+    padding: 12px 16px;
+    font-size: 15px;
+    border-radius: 8px;
+    text-align: left;
+  }
+
+  /* Overlay backdrop when menu is open */
+  .menu-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(60, 42, 30, 0.1);
+    z-index: 98;
+  }
+
+  .menu-backdrop.open {
+    display: block;
+  }
+
   /* ============ Main layout ============ */
   .page {
     max-width: 800px;
@@ -214,22 +287,24 @@
   .meta-info {
     font-size: 14px;
     color: var(--text-sub);
-    padding: 12px 16px;
+    padding: 16px 20px;
     background-color: var(--bg);
     border-radius: 8px;
     margin-bottom: 24px;
+    line-height: 1.8;
   }
 
-  .meta-info dt {
-    display: inline-block;
+  .meta-info .meta-row {
+    display: block;
+  }
+
+  .meta-info .meta-row + .meta-row {
+    margin-top: 4px;
+  }
+
+  .meta-info .meta-label {
     font-weight: 500;
     color: var(--text);
-    margin-right: 8px;
-  }
-
-  .meta-info dd {
-    display: inline;
-    margin-right: 16px;
   }
 
   .effective-date {
@@ -458,13 +533,13 @@
       font-size: 9px;
     }
 
+    /* Hide inline nav, show menu button */
     .nav {
-      gap: 2px;
+      display: none;
     }
 
-    .nav-link {
-      font-size: 12px;
-      padding: 6px 7px;
+    .menu-toggle {
+      display: flex;
     }
 
     .page {
@@ -498,16 +573,7 @@
 
   @media (max-width: 380px) {
     .brand-jp {
-      font-size: 15px;
-    }
-
-    .brand-en {
-      display: none;
-    }
-
-    .nav-link {
-      font-size: 11px;
-      padding: 6px 5px;
+      font-size: 16px;
     }
   }
 
@@ -521,7 +587,10 @@
 
     .site-header,
     .site-footer,
-    .faq-icon {
+    .faq-icon,
+    .menu-toggle,
+    .mobile-menu,
+    .menu-backdrop {
       display: none;
     }
 
@@ -565,8 +634,22 @@
       <a href="#privacy" class="nav-link" data-page="privacy">プライバシーポリシー</a>
       <a href="#support" class="nav-link" data-page="support">サポート</a>
     </nav>
+    <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="5" r="1.5"/>
+        <circle cx="12" cy="12" r="1.5"/>
+        <circle cx="12" cy="19" r="1.5"/>
+      </svg>
+    </button>
   </div>
 </header>
+
+<div class="menu-backdrop" aria-hidden="true"></div>
+<nav id="mobile-menu" class="mobile-menu" aria-label="モバイルナビゲーション">
+  <a href="#terms" class="nav-link" data-page="terms">利用規約</a>
+  <a href="#privacy" class="nav-link" data-page="privacy">プライバシーポリシー</a>
+  <a href="#support" class="nav-link" data-page="support">サポート</a>
+</nav>
 
 <main>
 
@@ -579,18 +662,18 @@
     <p class="page-subtitle">Terms of Service</p>
 
     <div class="card">
-      <dl class="meta-info">
-        <dt>サービス名：</dt><dd>おはこめし（ohako meshi）</dd>
-        <dt>サービス提供者：</dt><dd>Michiru Seki（以下「開発者」）</dd>
-        <dt>連絡先：</dt><dd><a href="mailto:support@ohakomeshi.app">support@ohakomeshi.app</a></dd>
-      </dl>
+      <div class="meta-info">
+        <div class="meta-row"><span class="meta-label">サービス名：</span>おはこめし（ohako meshi）</div>
+        <div class="meta-row"><span class="meta-label">サービス提供者：</span>Michiru Seki（以下「開発者」）</div>
+        <div class="meta-row"><span class="meta-label">連絡先：</span><a href="mailto:support@ohakomeshi.app">support@ohakomeshi.app</a></div>
+      </div>
 
       <p>本利用規約（以下「本規約」）は、Michiru Seki（以下「開発者」）が提供するレシピ管理アプリ「おはこめし」（以下「本サービス」）の利用条件を定めるものです。本サービスをご利用になるユーザーの皆様（以下「ユーザー」）は、本規約に同意の上、本サービスをご利用ください。</p>
 
       <h2>第1条（定義）</h2>
       <p>本規約において使用する用語の定義は、以下のとおりとします。</p>
       <ul>
-        <li><strong>「本サービス」</strong>とは、おはこめし（iOS / Android アプリ及び関連する Web サービス）をいいます。</li>
+        <li><strong>「本サービス」</strong>とは、おはこめし(iOS アプリ及び関連する Web サービス)をいいます。</li>
         <li><strong>「開発者」</strong>とは、本サービスを提供する Michiru Seki をいいます。</li>
         <li><strong>「ユーザー」</strong>とは、本サービスを利用するすべての者をいいます。</li>
         <li><strong>「コンテンツ」</strong>とは、ユーザーが本サービス上に投稿・保存するレシピ、写真、調理ログ、コメント等の情報をいいます。</li>
@@ -633,10 +716,10 @@
       <h2>第5条(料金とサブスクリプション)</h2>
       <ol>
         <li>本サービスは基本無料で利用できます(Free プラン)。</li>
-        <li>開発者は、有料の Pro プランを提供しており、Apple App Store または Google Play Store のアプリ内課金(サブスクリプション)を通じて購入できます。</li>
+        <li>開発者は、有料の Pro プランを提供しており、Apple App Store のアプリ内課金(サブスクリプション)を通じて購入できます。</li>
         <li>サブスクリプションは、ユーザーが解約しない限り自動的に更新されます。</li>
-        <li>解約は、ご利用のストア(App Store / Google Play)の設定画面から行ってください。</li>
-        <li>返金については、ご利用のストアのポリシーに準拠します。</li>
+        <li>解約は、App Store の設定画面から行ってください。</li>
+        <li>返金については、App Store のポリシーに準拠します。</li>
         <li>開発者は料金体系を変更する場合、事前に通知します。</li>
       </ol>
 
@@ -778,10 +861,10 @@
     <p class="page-subtitle">Privacy Policy</p>
 
     <div class="card">
-      <dl class="meta-info">
-        <dt>サービス提供者：</dt><dd>Michiru Seki(以下「開発者」)</dd>
-        <dt>連絡先：</dt><dd><a href="mailto:support@ohakomeshi.app">support@ohakomeshi.app</a></dd>
-      </dl>
+      <div class="meta-info">
+        <div class="meta-row"><span class="meta-label">サービス提供者：</span>Michiru Seki（以下「開発者」）</div>
+        <div class="meta-row"><span class="meta-label">連絡先：</span><a href="mailto:support@ohakomeshi.app">support@ohakomeshi.app</a></div>
+      </div>
 
       <h2>1. はじめに</h2>
       <p>本プライバシーポリシー(以下「本ポリシー」)は、おはこめし(以下「本サービス」)におけるユーザーの個人情報の取り扱いについて定めるものです。</p>
@@ -984,7 +1067,7 @@
         <h3>お問い合わせの際のお願い</h3>
         <p>以下の情報をお知らせいただけるとスムーズに対応できます。</p>
         <ul>
-          <li>ご利用の端末名(例：iPhone 15, Pixel 8 等)</li>
+          <li>ご利用の端末名(例：iPhone 15 等)</li>
           <li>OS バージョン</li>
           <li>アプリのバージョン(設定画面下部に表示されています)</li>
           <li>お問い合わせ内容の詳細</li>
@@ -1012,10 +1095,9 @@
           <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         </button>
         <div class="faq-answer">
-          <p>サブスクリプションの解約は、ご利用のストアの設定から行ってください。</p>
+          <p>サブスクリプションの解約は、iPhone の設定から行ってください。</p>
           <ul>
-            <li><strong>iPhone の場合：</strong>設定アプリ &gt; [ご自分の名前] &gt; サブスクリプション &gt; おはこめし &gt; サブスクリプションをキャンセル</li>
-            <li><strong>Android の場合：</strong>Google Play ストア &gt; メニュー &gt; 定期購入 &gt; おはこめし &gt; 定期購入を解約</li>
+            <li>設定アプリ &gt; [ご自分の名前] &gt; サブスクリプション &gt; おはこめし &gt; サブスクリプションをキャンセル</li>
           </ul>
           <p>解約後も、現在の課金期間が終了するまで Pro プランの機能をご利用いただけます。</p>
         </div>
@@ -1084,7 +1166,6 @@
       <h2>対応プラットフォーム</h2>
       <div class="platform-badges">
         <span class="platform-badge">iOS</span>
-        <span class="platform-badge">Android</span>
       </div>
     </div>
   </div>
@@ -1127,6 +1208,30 @@
       document.title = titles[page] || 'おはこめし';
     }
 
+    function closeMobileMenu() {
+      var menu = document.getElementById('mobile-menu');
+      var backdrop = document.querySelector('.menu-backdrop');
+      var toggle = document.querySelector('.menu-toggle');
+      if (menu) menu.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'メニューを開く');
+      }
+    }
+
+    function openMobileMenu() {
+      var menu = document.getElementById('mobile-menu');
+      var backdrop = document.querySelector('.menu-backdrop');
+      var toggle = document.querySelector('.menu-toggle');
+      if (menu) menu.classList.add('open');
+      if (backdrop) backdrop.classList.add('open');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'メニューを閉じる');
+      }
+    }
+
     function showPage(page) {
       // Toggle sections
       var sections = document.querySelectorAll('.page-section');
@@ -1138,7 +1243,7 @@
         }
       }
 
-      // Update nav active state
+      // Update nav active state (both desktop nav and mobile menu)
       var navLinks = document.querySelectorAll('.nav-link');
       for (var j = 0; j < navLinks.length; j++) {
         if (navLinks[j].getAttribute('data-page') === page) {
@@ -1158,6 +1263,7 @@
 
     function handleHashChange() {
       showPage(getCurrentPage());
+      closeMobileMenu();
     }
 
     // Initial page load
@@ -1181,6 +1287,42 @@
           });
         })(faqButtons[i]);
       }
+
+      // Mobile menu toggle
+      var toggle = document.querySelector('.menu-toggle');
+      var backdrop = document.querySelector('.menu-backdrop');
+      var mobileMenu = document.getElementById('mobile-menu');
+
+      if (toggle) {
+        toggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var isOpen = mobileMenu && mobileMenu.classList.contains('open');
+          if (isOpen) {
+            closeMobileMenu();
+          } else {
+            openMobileMenu();
+          }
+        });
+      }
+
+      // Close menu when clicking backdrop
+      if (backdrop) {
+        backdrop.addEventListener('click', closeMobileMenu);
+      }
+
+      // Close menu on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' || e.keyCode === 27) {
+          closeMobileMenu();
+        }
+      });
+
+      // Close menu if window is resized to desktop width
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 600) {
+          closeMobileMenu();
+        }
+      });
     });
 
     window.addEventListener('hashchange', handleHashChange);
