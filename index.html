@@ -455,6 +455,79 @@
     color: var(--accent);
   }
 
+  /* ============ Tokushoho specific ============ */
+  .tokushoho-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 16px 0 24px;
+  }
+
+  .tokushoho-table th,
+  .tokushoho-table td {
+    padding: 14px 18px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 15px;
+    line-height: 1.7;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tokushoho-table tr:last-child th,
+  .tokushoho-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .tokushoho-table th {
+    width: 32%;
+    background-color: rgba(232, 135, 75, 0.04);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .tokushoho-table td {
+    color: var(--text);
+  }
+
+  .tokushoho-table td ol {
+    margin: 8px 0 4px;
+    padding-left: 1.4em;
+  }
+
+  .tokushoho-table td ol li {
+    margin-bottom: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .tokushoho-table th,
+    .tokushoho-table td {
+      display: block;
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+
+    .tokushoho-table th {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .tokushoho-table td {
+      padding-top: 10px;
+      padding-bottom: 14px;
+    }
+
+    .tokushoho-table tr:not(:last-child) td {
+      border-bottom: 4px solid var(--card);
+    }
+  }
+
   /* ============ Footer ============ */
   .site-footer {
     background-color: var(--card);
@@ -632,6 +705,7 @@
     <nav class="nav" aria-label="メインナビゲーション">
       <a href="#terms" class="nav-link" data-page="terms">利用規約</a>
       <a href="#privacy" class="nav-link" data-page="privacy">プライバシーポリシー</a>
+      <a href="#transactions" class="nav-link" data-page="transactions">特商法表記</a>
       <a href="#support" class="nav-link" data-page="support">サポート</a>
     </nav>
     <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu">
@@ -648,6 +722,7 @@
 <nav id="mobile-menu" class="mobile-menu" aria-label="モバイルナビゲーション">
   <a href="#terms" class="nav-link" data-page="terms">利用規約</a>
   <a href="#privacy" class="nav-link" data-page="privacy">プライバシーポリシー</a>
+  <a href="#transactions" class="nav-link" data-page="transactions">特商法表記</a>
   <a href="#support" class="nav-link" data-page="support">サポート</a>
 </nav>
 
@@ -721,6 +796,7 @@
         <li>解約は、App Store の設定画面から行ってください。</li>
         <li>返金については、App Store のポリシーに準拠します。</li>
         <li>開発者は料金体系を変更する場合、事前に通知します。</li>
+        <li>料金、自動更新、解約方法等の詳細は<a href="#transactions">「特定商取引法に基づく表記」</a>をご参照ください。</li>
       </ol>
 
       <h2>第6条(プラン別利用制限)</h2>
@@ -1048,6 +1124,96 @@
 </section>
 
 <!-- ========================================== -->
+<!-- Specified Commercial Transactions          -->
+<!-- ========================================== -->
+<section id="transactions" class="page-section">
+  <div class="page">
+    <h1 class="page-title">特定商取引法に基づく表記</h1>
+    <p class="page-subtitle">Specified Commercial Transactions Act</p>
+
+    <div class="card">
+      <p>特定商取引法第11条に基づき、以下のとおり表記いたします。</p>
+
+      <table class="tokushoho-table">
+        <tbody>
+          <tr>
+            <th>販売事業者</th>
+            <td>Michiru Seki</td>
+          </tr>
+          <tr>
+            <th>運営統括責任者</th>
+            <td>Michiru Seki</td>
+          </tr>
+          <tr>
+            <th>所在地</th>
+            <td>個人情報保護の観点から、お問い合わせいただいた方に遅滞なく開示いたします。</td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td>個人情報保護の観点から、お問い合わせいただいた方に遅滞なく開示いたします。お問い合わせはメールにて承っております。</td>
+          </tr>
+          <tr>
+            <th>連絡先</th>
+            <td><a href="mailto:support@ohakomeshi.app">support@ohakomeshi.app</a></td>
+          </tr>
+          <tr>
+            <th>販売価格</th>
+            <td>各サブスクリプションプランの価格は、アプリ内の「設定」画面およびApp Storeの販売ページに表示された価格に準じます(税込表示)。価格は予告なく変更される場合があります。</td>
+          </tr>
+          <tr>
+            <th>商品代金以外の必要料金</th>
+            <td>インターネット接続料金、通信料金等はお客様のご負担となります。</td>
+          </tr>
+          <tr>
+            <th>支払方法</th>
+            <td>Apple App Storeでご利用可能な決済方法に準じます(クレジットカード、デビットカード、キャリア決済、Apple Gift Card等)。決済処理はApple Inc.が代行します。</td>
+          </tr>
+          <tr>
+            <th>支払時期</th>
+            <td>サブスクリプション契約成立時に初回料金が課金され、以後、選択されたプランの更新周期ごとに自動的に課金されます。</td>
+          </tr>
+          <tr>
+            <th>商品の引渡時期</th>
+            <td>決済完了後、ただちにサブスクリプション機能をご利用いただけます。</td>
+          </tr>
+          <tr>
+            <th>自動更新について</th>
+            <td>サブスクリプションは、現在の更新期間終了の24時間前までに解約手続きが行われない限り、自動的に同一プランで更新されます。更新時の料金は、Apple IDに登録された決済方法より自動で引き落とされます。</td>
+          </tr>
+          <tr>
+            <th>解約方法</th>
+            <td>
+              iOSの「設定」アプリから以下の手順でいつでも解約いただけます。
+              <ol>
+                <li>iPhoneの「設定」アプリを開く</li>
+                <li>画面上部のお名前(Apple ID)をタップ</li>
+                <li>「サブスクリプション」をタップ</li>
+                <li>「おはこめし」を選択</li>
+                <li>「サブスクリプションをキャンセルする」をタップ</li>
+              </ol>
+              解約後も、現在の更新期間終了日までProプランの機能をご利用いただけます。詳細は<a href="https://support.apple.com/ja-jp/HT202039" target="_blank" rel="noopener noreferrer">Appleサポート</a>もご参照ください。
+            </td>
+          </tr>
+          <tr>
+            <th>返品・キャンセル</th>
+            <td>デジタルコンテンツの性質上、購入確定後のお客様都合による返品・キャンセルには応じかねます。ただし、Apple App Storeの返金ポリシーが適用される場合があります。返金をご希望の場合は、<a href="https://reportaproblem.apple.com/" target="_blank" rel="noopener noreferrer">Apple</a>へ直接お申し出ください。</td>
+          </tr>
+          <tr>
+            <th>動作環境</th>
+            <td>App Storeの販売ページに記載された動作環境をご確認ください。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="effective-date">
+        <p>制定日：2026年5月8日</p>
+        <p>最終更新日：2026年5月8日</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
 <!-- Support                                    -->
 <!-- ========================================== -->
 <section id="support" class="page-section">
@@ -1178,6 +1344,7 @@
     <nav class="footer-nav" aria-label="フッターナビゲーション">
       <a href="#terms">利用規約</a>
       <a href="#privacy">プライバシーポリシー</a>
+      <a href="#transactions">特商法表記</a>
       <a href="#support">サポート</a>
     </nav>
     <p class="footer-contact">
@@ -1191,7 +1358,7 @@
   (function() {
     'use strict';
 
-    var VALID_PAGES = ['terms', 'privacy', 'support'];
+    var VALID_PAGES = ['terms', 'privacy', 'transactions', 'support'];
     var DEFAULT_PAGE = 'terms';
 
     function getCurrentPage() {
@@ -1203,6 +1370,7 @@
       var titles = {
         terms: '利用規約 | おはこめし',
         privacy: 'プライバシーポリシー | おはこめし',
+        transactions: '特定商取引法に基づく表記 | おはこめし',
         support: 'サポート | おはこめし'
       };
       document.title = titles[page] || 'おはこめし';
